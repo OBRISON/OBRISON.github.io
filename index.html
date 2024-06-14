@@ -1,83 +1,45 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <style>       
-        #background-bar {
-            background-color: rgb(77, 77, 77);
-            width: 100%; /* Ensure the container is 100% width */
-            height: 30px;
-            line-height: 30px;
-            border-radius: 15px;
-            overflow: hidden; /* Prevent overflow */
-        }
-
-        #loading-bar {
-            background-color: rgb(51, 127, 197);
-            color: rgb(218, 218, 218);
-            font-family: Arial, Helvetica, sans-serif;
-            /* Remove padding or set it to zero */
-            padding: 0;
-            text-align: center; /* Center the text within the bar */
-            border-radius: 15px;
-            width: 0%; /* Start width at 0% */
-            max-width: 100%; /* Ensure the width does not exceed 100% */
-            height: 100%; /* Match the height of the background bar */
-            transition: width 1s; /* Smooth transition for width */
-        }
-
-        #status-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 20px;
-            font-family: Arial, Helvetica, sans-serif;
-            color: rgb(218, 218, 218);
-        }
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        var progress = 0;
-        var filesT = 0; // Initialize total files
-        var filesN = 0; // Initialize needed files
-        var interval = setInterval(increment, 10);
-        
-        function increment() {
-            // Calculate progress percentage if filesT is not zero
-            if (filesT !== 0) {
-                progress = (filesT - filesN) / filesT * 100;
-            } else {
-                progress = 0; // Default to 0 if filesT is zero
-            }
-            
-            // Ensure progress doesn't exceed 100%
-            if (progress > 100) {
-                progress = 100;
-            }
-            
-            // Increment progress by 5%
-            // progress += 5;
-            
-            updateLoadingBar(Math.round(progress) + "%"); // Call updateLoadingBar with progress
-        }
-    
-        function SetFilesNeeded(needed) {
-            filesN = Number(needed); // Update needed files
-        }
-    
-        function SetFilesTotal(total) {
-            filesT = Number(total); // Update total files
-        }
-        
-        function updateLoadingBar(text) {
-            document.getElementById("loading-bar").style.width = progress + "%";
-            document.getElementById("loading-bar").innerHTML = text;
-        }
-    </script>
-</head>
-<body>
-    <div id="background-bar">
-        <div id="loading-bar"></div>
-    </div>
-</body>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gmod - LoadingScreen</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/slide.css">
+        <link rel="stylesheet" type="text/css" href="css/loading.css">
+    </head>
+    <body>
+        <!-- LOGO -->
+        <div class="up">
+            <img id="logo" src="img/logo.png" style="height:300px;width:300px;">
+        </div>
+        <!-- Background -->
+        <div class="slider">
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+        </div>
+        <!-- Loading BAR-->
+        <section class="middle">
+            <div class="progress-bar">
+                <div class="progress" style="width: 10px;" id="progressbar" role="progressbar"></div>
+            </div>
+            <div class="progress-text" id="subtext1"></div>
+        </section>
+        <!-- MUSIC -->
+        <audio autoplay loop id="music">
+            <source src="./panda.ogg" type="audio/ogg">
+        </audio>
+        <!-- SCRIPTS -->
+        <script src="js/steam.js"></script>
+        <script src="js/music.js"></script>
+        <script
+            src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
+            integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE="
+            crossorigin="anonymous">
+        </script>
+    </body>
 </html>
+<!-- Takeus 2021-2023 -->
